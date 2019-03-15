@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 01:59:56 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 09:32:18 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 10:53:01 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,5 +42,6 @@ void				resolve(t_parse *parse, t_nome *polynome);
 t_nome				*ft_newnome(t_nome **first, double coef, int exp);
 void				ft_delnome(t_nome **first);
 void				ft_print_polynome(t_nome *first);
+void				ft_sort_polynome(t_nome *nome);
 
 #endif

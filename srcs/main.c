@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:05:53 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 10:06:42 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:09:52 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,9 +16,9 @@
 /*
 **	Regle pour pas casser le parser :
 **
-**	-	'+' et '-' separe par des espaces
+**	-	'+', '-' et '=' forcement separe par des espaces
 **	-	Exposant colle au X et au nombre : "X^N"
-**
+**	-	Aucun caractere avant un nombre
 */
 
 static void	find_X(t_parse *parse, char **tab, int i)
@@ -90,7 +90,6 @@ int		main(int ac, char **av)
 		parse.poly_degree = 0;
 		if (parsing(av[1], &parse))
 			return (1);
-
 		if (!(sum = reduce(&parse)))
 		{
 			ft_putendl("The polinomial degree is strictly greater than 2, I can't solve.");

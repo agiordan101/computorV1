@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:36:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 10:06:44 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 10:53:45 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,4 +60,25 @@ void	ft_print_polynome(t_nome *first)
 		first = first->next;
 	}
 	ft_putendl(" = 0");
+}
+
+void	ft_sort_polynome(t_nome *first)
+{
+	t_nome	*tmp;
+	double	tmpValue;
+
+	tmp = first;
+	first = first->next;
+	while (first)
+	{
+		if (tmp->exp < first->exp)
+		{
+			tmpValue = tmp->coef;
+			tmp->coef = first->coef;
+			first->coef = tmpValue;
+			ft_swapint(&(tmp->exp), &(first->exp));
+		}
+		first = first->next;
+		tmp = tmp->next;
+	}
 }

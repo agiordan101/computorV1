@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 07:39:35 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 10:03:28 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:09:54 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,6 +31,30 @@ static void		create_nome_missing(t_parse *parse, t_nome *sum, int *power)
 	if (parse->poly_degree >= 1)
 		if (!power[0])
 			ft_newnome(&sum, 0, 0);
+}
+
+static void		finish_sum(t_parse *parse, t_nome **sum, int *power)
+{
+	t_nome	*tmp;
+
+	create_nome_missing(parse, *sum, power);
+	ft_delnome(&(parse->first));
+	ft_sort_polynome(*sum);
+	ft_sort_polynome(*sum);
+	if ((*sum)->coef == 0)
+	{
+		tmp = (*sum)->next;
+		free(*sum);
+		*sum = tmp;
+		(parse->poly_degree)--;
+	}
+	if ((*sum)->coef == 0)
+	{
+		tmp = (*sum)->next;
+		free(*sum);
+		*sum = tmp;
+		(parse->poly_degree)--;
+	}	
 }
 
 static void		add_nome(t_nome *sum, t_nome *tmp)
@@ -69,7 +93,6 @@ t_nome			*reduce(t_parse *parse)
 			add_nome(sum, tmp);
 		tmp = tmp->next;
 	}
-	create_nome_missing(parse, sum, power);
-	ft_delnome(&(parse->first));
+	finish_sum(parse, &sum, power);
 	return (print_sum(parse, sum));
 }
