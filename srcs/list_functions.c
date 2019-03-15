@@ -6,12 +6,12 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:36:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 10:53:45 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:47:49 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "computorV1.h"
+#include "computorv1.h"
 
 t_nome	*ft_newnome(t_nome **first, double coef, int exp)
 {
@@ -65,7 +65,7 @@ void	ft_print_polynome(t_nome *first)
 void	ft_sort_polynome(t_nome *first)
 {
 	t_nome	*tmp;
-	double	tmpValue;
+	double	tmpvalue;
 
 	tmp = first;
 	first = first->next;
@@ -73,9 +73,9 @@ void	ft_sort_polynome(t_nome *first)
 	{
 		if (tmp->exp < first->exp)
 		{
-			tmpValue = tmp->coef;
+			tmpvalue = tmp->coef;
 			tmp->coef = first->coef;
-			first->coef = tmpValue;
+			first->coef = tmpvalue;
 			ft_swapint(&(tmp->exp), &(first->exp));
 		}
 		first = first->next;

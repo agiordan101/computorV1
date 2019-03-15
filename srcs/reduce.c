@@ -6,12 +6,12 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 07:39:35 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:23:36 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:47:59 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "computorV1.h"
+#include "computorv1.h"
 
 static t_nome	*print_sum(t_parse *parse, t_nome *sum)
 {
@@ -54,7 +54,7 @@ static void		finish_sum(t_parse *parse, t_nome **sum, int *power)
 		free(*sum);
 		*sum = tmp;
 		(parse->poly_degree)--;
-	}	
+	}
 }
 
 static void		add_nome(t_nome *sum, t_nome *tmp)
@@ -80,12 +80,12 @@ t_nome			*reduce(t_parse *parse)
 	sum = NULL;
 	while (tmp)
 	{
+		if (tmp->exp >= 3)
+			return (NULL);
 		if (!power[tmp->exp])
 		{
 			if (tmp->exp > parse->poly_degree)
 				parse->poly_degree = tmp->exp;
-			if (tmp->exp >= 3)
-				return (NULL);
 			power[tmp->exp] = 1;
 			ft_newnome(&sum, tmp->coef, tmp->exp);
 		}

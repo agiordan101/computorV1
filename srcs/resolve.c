@@ -6,12 +6,12 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 08:39:06 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:23:39 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:48:06 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "computorV1.h"
+#include "computorv1.h"
 
 static void	polynome_2nd_complexe(t_nome *polynome, double delta)
 {
@@ -21,14 +21,12 @@ static void	polynome_2nd_complexe(t_nome *polynome, double delta)
 	ft_putendl("Discriminant is strictly negative, the two solutions are :");
 	a = -polynome->next->coef / (2 * polynome->coef);
 	b = sqrt(ft_abs(delta)) / (2 * polynome->coef);
-	
 	printf("%f\t + i * %f\n", a, b);
 	//ft_putnbr((int)a1);
 	//ft_putchar('\t');
 	//ft_putstr(" + i * ");
 	//ft_putnbr((int)b1);
 	//ft_putchar('\n');
-	
 	printf("%f\t - i * %f\n", a, b);
 	//ft_putnbr((int)a1);
 	//ft_putchar('\t');
@@ -42,18 +40,18 @@ static void	polynome_2nd(t_nome *polynome)
 	double	s1;
 	double	s2;
 	double	delta;
-	
+
 	delta = polynome->next->coef * polynome->next->coef - 4 * polynome->coef *\
 			polynome->next->next->coef;
 	if (delta > 0)
 	{
-		ft_putendl("Discriminant is strictly positive, the two solutions are :");
+		ft_putendl("Discriminant is strictly positive,\
+												the two solutions are :");
 		s1 = (-polynome->next->coef - sqrt(delta)) / (2 * polynome->coef);
 		s2 = (-polynome->next->coef + sqrt(delta)) / (2 * polynome->coef);
-		printf("%f", s1);
+		printf("%f\n%f", s1, s2);
 		//ft_putnbr((int)s1);
-		ft_putchar('\n');
-		printf("%f", s2);
+		//ft_putchar('\n');
 		//ft_putnbr((int)s2);
 	}
 	else if (delta < 0)

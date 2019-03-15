@@ -6,22 +6,31 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:05:53 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:23:34 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:48:33 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "computorV1.h"
+#include "computorv1.h"
 
 /*
-**	Regle pour pas casser le parser :
+**	ComputorV1 fait en 1 nuit (1h30 - 11H30)
+**
+**	Bonus :
+**			- Gere la plupart des ecritures "naturelles".
+**			- Bloque les erreurs de syntaxe.
+**			- Peut recevoir les nomes dans n'importe quel ordre
+**			- Calculs le coefficient final si il en as plusieurs au meme poid
+**
+**
+**	Seul moyens de casser le parser :
 **
 **	-	'+', '-' et '=' forcement separe par des espaces
 **	-	Exposant colle au X et au nombre : "X^N"
 **	-	Aucun caractere avant un nombre
 */
 
-static void	find_X(t_parse *parse, char **tab, int i)
+static void	find_x(t_parse *parse, char **tab, int i)
 {
 	char	*x;
 
@@ -65,9 +74,10 @@ static int	parsing(char *av, t_parse *parse)
 	i = -1;
 	while (tab[++i])
 	{
-		find_X(parse, tab, i);
+		find_x(parse, tab, i);
 		find_coef(parse, tab, i);
-		if (tab[i][0] == '+' || tab[i][0] == '-' || tab[i][0] == '=' || !tab[i + 1])
+		if (tab[i][0] == '+' || tab[i][0] == '-' || tab[i][0] == '=' ||\
+															!tab[i + 1])
 		{
 			if (tab[i][0] == '=')
 				parse->side = -1;
@@ -78,7 +88,7 @@ static int	parsing(char *av, t_parse *parse)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_parse	parse;
 	t_nome	*sum;
@@ -92,7 +102,8 @@ int		main(int ac, char **av)
 			return (1);
 		if (!(sum = reduce(&parse)))
 		{
-			ft_putendl("The polinomial degree is strictly greater than 2, I can't solve.");
+			ft_putendl("The polinomial degree is strictly greater than 2,\
+															I can't solve.");
 			return (1);
 		}
 		resolve(&parse, sum);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   computorV1.h                                     .::    .:/ .      .::   */
+/*   computorv1.h                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 01:59:56 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 10:53:01 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:48:22 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ typedef struct		s_parse
 	double			coef;
 	int				exp;
 	int				side;
-	int				poly_degree;	
+	int				poly_degree;
 }					t_parse;
 
 t_nome				*reduce(t_parse *parse);
