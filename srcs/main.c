@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:05:53 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 08:58:59 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 10:06:42 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -90,11 +90,12 @@ int		main(int ac, char **av)
 		parse.poly_degree = 0;
 		if (parsing(av[1], &parse))
 			return (1);
-		//ft_print_polynome(parse.first);
-		
+
 		if (!(sum = reduce(&parse)))
+		{
+			ft_putendl("The polinomial degree is strictly greater than 2, I can't solve.");
 			return (1);
-		
+		}
 		resolve(&parse, sum);
 		ft_putchar('\n');
 	}

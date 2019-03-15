@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 07:39:35 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 08:59:44 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 10:03:28 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,9 +18,19 @@ static t_nome	*print_sum(t_parse *parse, t_nome *sum)
 	ft_putstr("Reduced form: ");
 	ft_print_polynome(sum);
 	ft_putstr("Polynomial degree: ");
-	ft_putchar(parse->poly_degree + '0');
+	ft_putnbr(parse->poly_degree);
 	ft_putchar('\n');
 	return (sum);
+}
+
+static void		create_nome_missing(t_parse *parse, t_nome *sum, int *power)
+{
+	if (parse->poly_degree == 2)
+		if (!power[1])
+			ft_newnome(&sum, 0, 1);
+	if (parse->poly_degree >= 1)
+		if (!power[0])
+			ft_newnome(&sum, 0, 0);
 }
 
 static void		add_nome(t_nome *sum, t_nome *tmp)
@@ -48,16 +58,18 @@ t_nome			*reduce(t_parse *parse)
 	{
 		if (!power[tmp->exp])
 		{
-			power[tmp->exp] = 1;
-			parse->poly_degree = tmp->exp;
+			if (tmp->exp > parse->poly_degree)
+				parse->poly_degree = tmp->exp;
 			if (tmp->exp >= 3)
 				return (NULL);
+			power[tmp->exp] = 1;
 			ft_newnome(&sum, tmp->coef, tmp->exp);
 		}
 		else
 			add_nome(sum, tmp);
 		tmp = tmp->next;
 	}
+	create_nome_missing(parse, sum, power);
 	ft_delnome(&(parse->first));
 	return (print_sum(parse, sum));
 }

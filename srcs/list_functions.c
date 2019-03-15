@@ -6,26 +6,24 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:36:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 08:51:36 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 10:06:44 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "computorV1.h"
 
-t_nome	*ft_newnome(t_nome **first, int coef, int exp)
+t_nome	*ft_newnome(t_nome **first, double coef, int exp)
 {
 	t_nome	*tmp;
 	t_nome	*new;
 
-	//printf("New nome : %d * X^%d\n", coef, exp);
 	tmp = *first;
 	if (tmp)
 		while (tmp->next)
 			tmp = tmp->next;
 	if (!(new = (t_nome *)malloc(sizeof(t_nome))))
 		return (NULL);
-	//printf("%p --- %p\n", *first, new);
 	new->coef = coef;
 	new->exp = exp;
 	new->next = NULL;
@@ -52,10 +50,14 @@ void	ft_print_polynome(t_nome *first)
 {
 	while (first)
 	{
-		ft_putnbr((int)(first->coef));
+		if (first->coef >= 0)
+			ft_putstr(" + ");
+		else
+			ft_putstr(" - ");
+		ft_putnbr(ft_abs((int)(first->coef)));
 		ft_putstr(" * X^");
 		ft_putnbr(first->exp);
-		ft_putchar('\n');
 		first = first->next;
 	}
+	ft_putendl(" = 0");
 }
