@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 01:59:56 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 07:55:51 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 08:58:56 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,12 +32,14 @@ typedef struct		s_parse
 	int				coef;
 	int				exp;
 	int				side;
-	int				polynomial_degree;	
+	int				poly_degree;	
 }					t_parse;
 
-void				reduce(t_parse *parse);
+t_nome				*reduce(t_parse *parse);
+void				resolve(t_parse *parse, t_nome *polynome);
 
 t_nome				*ft_newnome(t_nome **first, int coef, int exp);
+void				ft_delnome(t_nome **first);
 void				ft_print_polynome(t_nome *first);
 
 #endif

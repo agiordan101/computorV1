@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:05:53 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 07:57:41 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 08:58:59 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@
 **
 */
 
-void	find_X(t_parse *parse, char **tab, int i)
+static void	find_X(t_parse *parse, char **tab, int i)
 {
 	char	*x;
 
@@ -34,7 +34,7 @@ void	find_X(t_parse *parse, char **tab, int i)
 			parse->exp += ft_atoi(x + 1) - 1;
 }
 
-void	find_coef(t_parse *parse, char **tab, int i)
+static void	find_coef(t_parse *parse, char **tab, int i)
 {
 	if (i >= 1 && tab[i - 1][0] == '-')
 		parse->coef *= -1;
@@ -48,14 +48,14 @@ void	find_coef(t_parse *parse, char **tab, int i)
 	}
 }
 
-void	reset_values(t_parse *parse)
+static void	reset_values(t_parse *parse)
 {
 	parse->iscoef = 0;
 	parse->coef = parse->side;
 	parse->exp = 0;
 }
 
-int		parsing(char *av, t_parse *parse)
+static int	parsing(char *av, t_parse *parse)
 {
 	char	**tab;
 	int		i;
@@ -81,18 +81,21 @@ int		parsing(char *av, t_parse *parse)
 int		main(int ac, char **av)
 {
 	t_parse	parse;
+	t_nome	*sum;
 
 	if (ac == 2)
 	{
 		parse.first = NULL;
 		parse.side = 1;
+		parse.poly_degree = 0;
 		if (parsing(av[1], &parse))
 			return (1);
-		ft_print_polynome(parse.first);
-		reduce(&parse);
-
-		//resolve(&parse);
-		//print(&parse);
+		//ft_print_polynome(parse.first);
+		
+		if (!(sum = reduce(&parse)))
+			return (1);
+		
+		resolve(&parse, sum);
 		ft_putchar('\n');
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:36:00 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 07:57:35 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 08:51:36 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,15 +36,26 @@ t_nome	*ft_newnome(t_nome **first, int coef, int exp)
 	return (new);
 }
 
+void	ft_delnome(t_nome **first)
+{
+	t_nome	*tmp;
+
+	while (*first)
+	{
+		tmp = (*first)->next;
+		free(*first);
+		*first = tmp;
+	}
+}
+
 void	ft_print_polynome(t_nome *first)
 {
 	while (first)
 	{
-		ft_putstr("\nNome : ");
 		ft_putnbr((int)(first->coef));
 		ft_putstr(" * X^");
 		ft_putnbr(first->exp);
-		//printf("Adresse : %p\n", first);
+		ft_putchar('\n');
 		first = first->next;
 	}
 }
