@@ -6,18 +6,35 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 08:39:06 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:09:56 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 11:23:39 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "computorV1.h"
 
-static void	polynome_2nd_complexe(t_nome *polynome)
+static void	polynome_2nd_complexe(t_nome *polynome, double delta)
 {
+	double	a;
+	double	b;
+
 	ft_putendl("Discriminant is strictly negative, the two solutions are :");
-	ft_putendl("Not yet...");
-	polynome = NULL;
+	a = -polynome->next->coef / (2 * polynome->coef);
+	b = sqrt(ft_abs(delta)) / (2 * polynome->coef);
+	
+	printf("%f\t + i * %f\n", a, b);
+	//ft_putnbr((int)a1);
+	//ft_putchar('\t');
+	//ft_putstr(" + i * ");
+	//ft_putnbr((int)b1);
+	//ft_putchar('\n');
+	
+	printf("%f\t - i * %f\n", a, b);
+	//ft_putnbr((int)a1);
+	//ft_putchar('\t');
+	//ft_putstr(" - i * ");
+	//ft_putnbr((int)b1);
+	//ft_putchar('\n');
 }
 
 static void	polynome_2nd(t_nome *polynome)
@@ -40,7 +57,7 @@ static void	polynome_2nd(t_nome *polynome)
 		//ft_putnbr((int)s2);
 	}
 	else if (delta < 0)
-		polynome_2nd_complexe(polynome);
+		polynome_2nd_complexe(polynome, delta);
 	else
 	{
 		ft_putendl("Discriminant is null, the solution is :");
