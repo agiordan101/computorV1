@@ -6,12 +6,13 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 07:39:35 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:47:59 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 20:35:07 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "computorv1.h"
+#include <stdio.h>
 
 static t_nome	*print_sum(t_parse *parse, t_nome *sum)
 {
@@ -48,7 +49,7 @@ static void		finish_sum(t_parse *parse, t_nome **sum, int *power)
 		*sum = tmp;
 		(parse->poly_degree)--;
 	}
-	if ((*sum)->coef == 0)
+	else if ((*sum)->coef == 0)
 	{
 		tmp = (*sum)->next;
 		free(*sum);
@@ -73,6 +74,7 @@ t_nome			*reduce(t_parse *parse)
 	t_nome	*tmp;
 	int		power[3];
 
+	printf("exp = %d\n", parse->first->exp);
 	power[0] = 0;
 	power[1] = 0;
 	power[2] = 0;
@@ -80,7 +82,7 @@ t_nome			*reduce(t_parse *parse)
 	sum = NULL;
 	while (tmp)
 	{
-		if (tmp->exp >= 3)
+		if (tmp->exp > 2)
 			return (NULL);
 		if (!power[tmp->exp])
 		{

@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 02:05:53 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:48:33 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 20:36:53 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@
 **			- Calculs le coefficient final si il en as plusieurs au meme poid
 **
 **
-**	Seul moyens de casser le parser :
+**	Seul moyens de ne pas casser le parser :
 **
 **	-	'+', '-' et '=' forcement separe par des espaces
 **	-	Exposant colle au X et au nombre : "X^N"
@@ -102,8 +102,8 @@ int			main(int ac, char **av)
 			return (1);
 		if (!(sum = reduce(&parse)))
 		{
-			ft_putendl("The polinomial degree is strictly greater than 2,\
-															I can't solve.");
+			ft_putstr("The polinomial degree is strictly greater than 2, ");
+			ft_putendl("I can't solve.");
 			return (1);
 		}
 		resolve(&parse, sum);

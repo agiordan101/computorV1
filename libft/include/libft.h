@@ -6,7 +6,7 @@
 /*   By: agiordan <agiordan@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 17:31:57 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:49:08 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 18:45:31 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -109,6 +109,7 @@ void				ft_printtabl(char **tab);
 int					ft_tablen(char **tab);
 char				**ft_tabnew(size_t nline, size_t lline);
 void				ft_tabdel(char ***tab);
+void				ft_tab2del(void ***tab);
 char				**ft_tabcpy(char **dest, char **src);
 char				**ft_tabdup(char **tab);
 void				ft_tabintdel(int **tab);
@@ -121,5 +122,7 @@ int					ft_stristr(char *str, char *tofind);
 void				ft_putinttab(int *tab, size_t len);
 int					ft_countnumbers(char *str);
 int					*ft_catinttab(int *tab1, size_t l1, int *tab2, size_t l2);
+int					ft_bintodec(int bin);
+int					ft_dectobin(int dec);
 
 #endif

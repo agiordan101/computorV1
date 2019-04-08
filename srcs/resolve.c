@@ -6,7 +6,7 @@
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/15 08:39:06 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 11:48:06 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 19:39:13 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,11 +45,11 @@ static void	polynome_2nd(t_nome *polynome)
 			polynome->next->next->coef;
 	if (delta > 0)
 	{
-		ft_putendl("Discriminant is strictly positive,\
-												the two solutions are :");
+		ft_putstr("Discriminant is strictly positive, ");
+		ft_putendl("the two solutions are :");
 		s1 = (-polynome->next->coef - sqrt(delta)) / (2 * polynome->coef);
 		s2 = (-polynome->next->coef + sqrt(delta)) / (2 * polynome->coef);
-		printf("%f\n%f", s1, s2);
+		printf("%f\n%f\n", s1, s2);
 		//ft_putnbr((int)s1);
 		//ft_putchar('\n');
 		//ft_putnbr((int)s2);
@@ -59,8 +59,9 @@ static void	polynome_2nd(t_nome *polynome)
 	else
 	{
 		ft_putendl("Discriminant is null, the solution is :");
-		printf("%f", -polynome->next->coef / (2 * polynome->coef));
+		printf("%f\n", -polynome->next->coef / (2 * polynome->coef));
 		//ft_putnbr((int)(-polynome->next->coef / (2 * polynome->coef)));
+		//ft_putchar('\n');
 	}
 }
 
@@ -76,8 +77,9 @@ void		resolve(t_parse *parse, t_nome *polynome)
 	{
 		s1 = -polynome->next->coef / polynome->coef;
 		ft_putstr("The solution is : ");
-		printf("%f", s1);
+		printf("%f\n", s1);
 		//ft_putnbr((int)s1);
+		//ft_putchar('\n');
 	}
 	else
 		polynome_2nd(polynome);
